@@ -10,23 +10,24 @@
   <script>document.documentElement.classList.add('js');</script>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2314100c'/%3E%3Cg fill='none' stroke='%23d4a24c' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M10 34 H38' stroke-width='3'/%3E%3Cpath d='M38 34 C45 34 50 29 55 22 V46 C50 39 45 34 38 34 Z' stroke-width='2.8'/%3E%3Cpath d='M20 34 V26 M26 34 V26 M32 34 V26' stroke-width='2.6'/%3E%3C/g%3E%3Cg fill='%23d4a24c'%3E%3Ccircle cx='20' cy='23' r='2.8'/%3E%3Ccircle cx='26' cy='23' r='2.8'/%3E%3Ccircle cx='32' cy='23' r='2.8'/%3E%3Ccircle cx='8' cy='34' r='3'/%3E%3C/g%3E%3C/svg%3E" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="preload" href="marcellus-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
   <meta name="theme-color" content="#14100c" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Marcos García Vaquero" />
   <meta property="og:title" content="Biografía — Marcos García Vaquero, trompeta" />
   <meta property="og:description" content="Biografía del trompetista Marcos García Vaquero, trompeta solista de la Orquesta Sinfónica de Madrid." />
-  <meta property="og:image" content="https://drive.google.com/thumbnail?id=1GXjGrYxDsyZb_h4j0-NADIUojcXYXbOu&sz=w1200" />
+  <meta property="og:image" content="https://drive.google.com/thumbnail?id=1Tcv5avErKaV_IehtCp2mb0XFoDcWus67&sz=w1200" />
   <meta property="og:locale" content="es_ES" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="bio">
+<body>
 
   <!-- HEADER -->
   <header class="header" id="header">
-    <a class="logo" href="index.html" aria-label="Marcos García Vaquero — Inicio">
+    <a class="logo" href="index.html" aria-label="Marcos García Vaquero">
       <svg class="logo-mark" viewBox="4 14 56 36" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M10 34 H38" stroke-width="2.6"/><path d="M38 34 C45 34 50 29 55 22 V46 C50 39 45 34 38 34 Z" stroke-width="2.4"/><path d="M20 34 V26 M26 34 V26 M32 34 V26" stroke-width="2.2"/></g><circle cx="20" cy="23.5" r="2.3" fill="currentColor"/><circle cx="26" cy="23.5" r="2.3" fill="currentColor"/><circle cx="32" cy="23.5" r="2.3" fill="currentColor"/><circle cx="8" cy="34" r="2.6" fill="currentColor"/></svg>
-      <span class="logo-text"><span class="logo-name">Marcos <em>García Vaquero</em></span><span class="logo-sub">Trompeta</span></span>
+      <span class="logo-text"><span class="logo-name">Marcos García Vaquero</span><span class="logo-sub">Trompeta</span></span>
     </a>
     <button class="menu-toggle" id="menuBtn" aria-label="Abrir o cerrar el menú" aria-expanded="false">
       <span></span>
@@ -34,56 +35,40 @@
       <span></span>
     </button>
     <nav class="nav" id="nav">
-      <a href="biografia.html" aria-current="page">Biografía</a>
-      <a href="multimedia.html">Media</a>
-      <a href="conciertos.html">Conciertos</a>
-      <a href="index.html#contact">Contacto</a>
+      <a href="index.html"><span class="nav-num">01</span>Inicio</a>
+      <a href="biografia.html" aria-current="page"><span class="nav-num">02</span>Biografía</a>
+      <a href="multimedia.html"><span class="nav-num">03</span>Media</a>
+      <a href="conciertos.html"><span class="nav-num">04</span>Conciertos</a>
+      <a href="index.html#contact"><span class="nav-num">05</span>Contacto</a>
       <a class="nav-lang" href="biography.html" hreflang="en" lang="en" aria-label="English version">EN</a>
     </nav>
   </header>
 
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero-bg">
-      <img src="https://drive.google.com/thumbnail?id=13XXb44eDaTPqym4kEtKsvMwsIqTGCHBh&sz=w2000" alt="Marcos García Vaquero" referrerpolicy="no-referrer" onerror="this.style.display='none'">
-    </div>
-    <div class="hero-content">
-      <span class="hero-kicker">Trompeta</span>
-      <h1 class="hero-title"><span class="line"><span>Biografía</span></span></h1>
-    </div>
-    <div class="hero-scroll" aria-hidden="true">
-      <span>Scroll</span>
-      <div class="hero-scroll-line"></div>
+  <!-- PAGE TITLE -->
+  <section class="page-top">
+    <img src="https://drive.google.com/thumbnail?id=1lOyxNjI6SjKKSqp8F6FrPPAedDNNUcRs&sz=w2000" alt="" referrerpolicy="no-referrer" />
+    <div>
+      <span class="kicker">Trompeta</span>
+      <h1>Biografía</h1>
     </div>
   </section>
 
-  <!-- BIO -->
   <section class="section" id="bio">
-    <div class="container container--split">
-      <div class="split-label">
-        <span class="label">Biografía</span>
-      </div>
-      <div class="split-content">
-        <h2>Sobre<br /><em>Marcos García Vaquero</em></h2>
-
+    <div class="wrap bio-layout">
+      <figure class="bio-aside">
+        <img src="https://drive.google.com/thumbnail?id=1VJkZJvFatiGFIE3eBL5CuNCvYTpfG_0A&sz=w1200" alt="Marcos García Vaquero con su trompeta" referrerpolicy="no-referrer" />
+        <figcaption>Marcos García Vaquero</figcaption>
+      </figure>
+      <div class="bio-text">
         <p>Marcos García Vaquero, natural de Huelva, es actualmente trompeta solista de la Orquesta Sinfónica de Madrid, titular del Teatro Real, y profesor de la cátedra de trompeta del Conservatorio Superior de Música de Aragón y de la Escuela Superior de Enseñanzas Musicales Progreso Musical Madrid.</p>
-
         <p>Comienza sus estudios musicales a los 8 años en la Escuela Municipal de Música de Punta Umbría con los profesores Francisco Luis Martínez y Francisco Escobar García, con quien finaliza sus estudios de Grado Medio en el Conservatorio Profesional de Música de Huelva. En junio de 2011 termina sus estudios superiores en el Conservatorio Superior de Música del País Vasco «Musikene» con los profesores Luis González Martí, Reinhold Friedrich y Javier Simó. Posteriormente se traslada a Berlín para continuar su formación y, respaldado por la Beca Hezekiah Wardwell de la Fundación Alexander von Humboldt, realiza el máster en la Hochschule für Musik Hanns Eisler Berlin bajo la tutela de los profesores William Forman y Martin Wagemann.</p>
-
         <p>Ha sido alumno de la academia de estudios orquestales Barenboim-Said con el profesor Rainer Auerbach. Además, en su perfeccionamiento musical han influido profesores como Frits Damrow, Ole Edvard Antonsen, Gábor Tarkövi, Sergei Nakariakov, Mark Inouye, Martín Baeza, Tamás Velenczei, Jeroen Berwaerts, Eric Aubier, Bo Nilsson, Francisco «Pacho» Flores, Salvador Ibáñez, Manuel Blanco, Franck Pulcini o Rafael Santiago, entre otros.</p>
-
         <p>Ha tenido una importante formación orquestal como miembro de las orquestas jóvenes más importantes de Europa, tales como la Gustav Mahler Jugendorchester (GMJO), la European Union Youth Orchestra (EUYO), la Verbier Festival Orchestra (VFO), la Netherlands Youth Orchestra (NJO), el Pacific Music Festival (PMF), la Orquesta Joven de Extremadura (OJEX) y la Orquesta Joven de Andalucía (OJA). En el ámbito profesional ha colaborado con orquestas de primer nivel como la Staatskapelle Berlin, la Deutsche Oper Berlin, la Luxembourg Philharmonic, la Berlin Opera Chamber Orchestra, la Norddeutsche Philharmonie, la Orquesta Nacional de España, la Orquesta de Cadaqués, la Gstaad Festival Orchestra, la Orquesta Sinfónica de Bilbao, la Real Orquesta Sinfónica de Extremadura o la Orquesta Sinfónica de Sevilla, entre otras.</p>
-
         <p>A lo largo de su trayectoria ha trabajado bajo la batuta de maestros de la talla de Gustavo Dudamel, Simon Rattle, Semyon Bychkov, Daniel Barenboim, Sir Neville Marriner, Jaap van Zweden, John Adams, Daniel Harding, Gustavo Gimeno, Juanjo Mena o Lutz Köhler, entre otros, actuando en los escenarios más importantes del mundo, como la Philharmonie de Berlín, el Konzerthaus de Berlín, el Concertgebouw de Ámsterdam, la Philharmonie de París, el KKL de Lucerna, la Elbphilharmonie de Hamburgo, el Musikverein de Viena, la Kölner Philharmonie, el Suntory Hall de Tokio, el Sapporo Concert Hall Kitara, el Teatro alla Scala de Milán o el Auditorio Nacional de España.</p>
-
         <p>Es invitado asiduo para impartir clases magistrales y ofrecer recitales en festivales internacionales como el International Trumpet Guild (EE. UU.), Galaico Brass, el Maspalomas International Trumpet Festival o el Festival Internacional de Trompetas de Manizales (Colombia), así como profesor en la Orquesta Joven de Euskadi, la Orquesta Joven de Extremadura o la Orquesta Joven de la Comunidad de Madrid.</p>
-
         <p>En su labor como concertista ha sido invitado por diversas formaciones de cámara y orquestas sinfónicas, como la Orquesta Sinfónica de Madrid, la Orquesta Sinfónica de Gran Canaria, la Orquesta de Extremadura, la Orquesta Reina Sofía o la Orquesta Sinfónica de Caldas (Colombia), entre otras.</p>
-
         <p>Además, Marcos García desarrolla una continua actividad como músico de cámara como miembro de varios ensembles de metal, entre los que destaca el European Brass Ensemble, dirigido por el maestro Thomas Clamor, con quien grabó el CD <em>In Residence</em> para el sello discográfico GENUIN.</p>
-
         <p>Fue ganador del primer premio en el concurso organizado por la Asociación de Trompetistas «Alnafir» en 2008, con el que grabó la obra obligada <em>Piezas andaluzas para trompeta y piano</em> de Santiago Báez.</p>
-
         <p>Marcos García Vaquero es artista Yamaha.</p>
       </div>
     </div>
@@ -92,25 +77,25 @@
 
   <!-- FOOTER -->
   <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-brand">
-        <svg class="logo-mark" viewBox="4 14 56 36" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M10 34 H38" stroke-width="2.6"/><path d="M38 34 C45 34 50 29 55 22 V46 C50 39 45 34 38 34 Z" stroke-width="2.4"/><path d="M20 34 V26 M26 34 V26 M32 34 V26" stroke-width="2.2"/></g><circle cx="20" cy="23.5" r="2.3" fill="currentColor"/><circle cx="26" cy="23.5" r="2.3" fill="currentColor"/><circle cx="32" cy="23.5" r="2.3" fill="currentColor"/><circle cx="8" cy="34" r="2.6" fill="currentColor"/></svg>
-        <span class="logo-name">Marcos <em>García Vaquero</em></span>
-      </div>
-      <nav class="footer-nav">
-        <a href="index.html#contact">Contacto</a>
-        <a href="aviso-legal.html">Aviso legal</a>
-        <a href="privacidad.html">Privacidad</a>
-      </nav>
-      <small class="footer-copy">&copy; <span id="year"></span> Marcos García Vaquero. Todos los derechos reservados.</small>
-    </div>
+    <svg class="logo-mark" viewBox="4 14 56 36" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M10 34 H38" stroke-width="2.6"/><path d="M38 34 C45 34 50 29 55 22 V46 C50 39 45 34 38 34 Z" stroke-width="2.4"/><path d="M20 34 V26 M26 34 V26 M32 34 V26" stroke-width="2.2"/></g><circle cx="20" cy="23.5" r="2.3" fill="currentColor"/><circle cx="26" cy="23.5" r="2.3" fill="currentColor"/><circle cx="32" cy="23.5" r="2.3" fill="currentColor"/><circle cx="8" cy="34" r="2.6" fill="currentColor"/></svg>
+    <div class="footer-name">Marcos García Vaquero</div>
+    <nav class="footer-nav">
+      <a href="index.html">Inicio</a>
+      <a href="biografia.html">Biografía</a>
+      <a href="multimedia.html">Media</a>
+      <a href="conciertos.html">Conciertos</a>
+      <a href="index.html#contact">Contacto</a>
+      <a href="aviso-legal.html">Aviso legal</a>
+      <a href="privacidad.html">Privacidad</a>
+    </nav>
+    <small class="footer-copy">&copy; <span id="year"></span> Marcos García Vaquero. Todos los derechos reservados.</small>
   </footer>
 
   <!-- COOKIE BANNER (only shown on pages that embed YouTube videos) -->
   <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Consentimiento de cookies" style="display:none;">
     <p>Esta web solo utiliza cookies cuando reproduces un vídeo de YouTube. <a href="privacidad.html">Política de privacidad</a></p>
     <div class="cookie-actions">
-      <button class="btn btn--primary btn--sm" type="button" onclick="acceptCookies()">Aceptar</button>
+      <button class="btn btn--solid btn--sm" type="button" onclick="acceptCookies()">Aceptar</button>
       <button class="btn btn--ghost btn--sm" type="button" onclick="rejectCookies()">Rechazar</button>
     </div>
   </div>

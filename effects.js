@@ -1,91 +1,61 @@
 /* ============================================================
    MARCOS GARCÍA VAQUERO — effects.js
-   Scroll progress, hero lines, pointer spotlight, staggered
-   reveals. Pure enhancement: the site works without it.
+   Scroll progress, mobile-menu cascade and photo lightbox.
+   Pure enhancement: the site works without it.
    ============================================================ */
 (function () {
-  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* 1. Thin progress bar at the top of the page */
+  /* 1. Thin brass progress bar */
   var bar = document.createElement('div');
   bar.className = 'scroll-progress';
   bar.setAttribute('aria-hidden', 'true');
   document.body.appendChild(bar);
-
-  function updateProgress() {
+  function progress() {
     var max = document.documentElement.scrollHeight - window.innerHeight;
-    var p = max > 0 ? Math.min(1, window.scrollY / max) : 0;
-    bar.style.transform = 'scaleX(' + p + ')';
+    bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(1, window.scrollY / max) : 0) + ')';
   }
-  window.addEventListener('scroll', updateProgress, { passive: true });
-  window.addEventListener('resize', updateProgress);
-  updateProgress();
+  window.addEventListener('scroll', progress, { passive: true });
+  window.addEventListener('resize', progress);
+  progress();
 
-  /* 2. Three thin lines across the hero — the three valves of a trumpet */
-  var hero = document.querySelector('.hero');
-  if (hero) {
-    var strings = document.createElement('div');
-    strings.className = 'hero-strings';
-    strings.setAttribute('aria-hidden', 'true');
-    for (var i = 0; i < 3; i++) {
-      var s = document.createElement('span');
-      s.style.setProperty('--i', i);
-      strings.appendChild(s);
-    }
-    hero.appendChild(strings);
+  /* 2. Mobile menu: links cascade in */
+  document.querySelectorAll('#nav a').forEach(function (a, i) { a.style.setProperty('--n', i); });
 
-    /* 3. Spotlight follows the pointer (desktop only) */
-    if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
-      var raf = null;
-      hero.addEventListener('pointermove', function (e) {
-        if (raf) return;
-        raf = requestAnimationFrame(function () {
-          var r = hero.getBoundingClientRect();
-          hero.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
-          hero.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
-          raf = null;
-        });
-      });
-      hero.addEventListener('pointerleave', function () {
-        hero.style.removeProperty('--mx');
-        hero.style.removeProperty('--my');
-      });
-    }
+  /* 3. Lightbox for every .gallery */
+  var links = Array.prototype.slice.call(document.querySelectorAll('.gallery a'));
+  if (!links.length) return;
+  var es = (document.documentElement.lang || '').indexOf('es') === 0;
+  var box = document.createElement('div');
+  box.className = 'lightbox';
+  box.setAttribute('role', 'dialog');
+  box.setAttribute('aria-modal', 'true');
+  box.innerHTML =
+    '<img alt="" referrerpolicy="no-referrer">' +
+    '<button class="lb-close" type="button" aria-label="' + (es ? 'Cerrar' : 'Close') + '">×</button>' +
+    '<button class="lb-prev" type="button" aria-label="' + (es ? 'Anterior' : 'Previous') + '">‹</button>' +
+    '<button class="lb-next" type="button" aria-label="' + (es ? 'Siguiente' : 'Next') + '">›</button>';
+  document.body.appendChild(box);
+  var img = box.querySelector('img');
+  var current = 0;
 
-    /* 4. Gentle parallax on the hero photo */
-    var img = hero.querySelector('.hero-bg img');
-    if (img && !reduceMotion) {
-      window.addEventListener('scroll', function () {
-        var y = Math.min(window.scrollY, window.innerHeight);
-        img.style.translate = '0 ' + (y * 0.18).toFixed(1) + 'px';
-      }, { passive: true });
-    }
+  function show(i) {
+    current = (i + links.length) % links.length;
+    img.src = links[current].getAttribute('href');
+    img.alt = links[current].querySelector('img').alt;
   }
+  function open(i) { show(i); box.classList.add('is-open'); document.body.classList.add('menu-open'); box.querySelector('.lb-close').focus(); }
+  function close() { box.classList.remove('is-open'); document.body.classList.remove('menu-open'); links[current].focus(); }
 
-  /* 5. Stagger: children of revealed blocks appear one after another */
-  var groups = document.querySelectorAll('.split-content, .video-grid, .contact-form, .legal .container');
-  groups.forEach(function (g) {
-    Array.prototype.forEach.call(g.children, function (child, idx) {
-      child.classList.add('stagger');
-      child.style.setProperty('--d', Math.min(idx, 10) * 70 + 'ms');
-    });
+  links.forEach(function (a, i) {
+    a.addEventListener('click', function (e) { e.preventDefault(); open(i); });
   });
-  if ('IntersectionObserver' in window && !reduceMotion) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.05, rootMargin: '0px 0px -5% 0px' });
-    document.querySelectorAll('.stagger').forEach(function (el) { io.observe(el); });
-  } else {
-    document.querySelectorAll('.stagger').forEach(function (el) { el.classList.add('in'); });
-  }
-
-  /* 6. Mobile menu: number the links so they can cascade in */
-  document.querySelectorAll('#nav a').forEach(function (a, idx) {
-    a.style.setProperty('--n', idx);
+  box.querySelector('.lb-close').addEventListener('click', close);
+  box.querySelector('.lb-prev').addEventListener('click', function () { show(current - 1); });
+  box.querySelector('.lb-next').addEventListener('click', function () { show(current + 1); });
+  box.addEventListener('click', function (e) { if (e.target === box) close(); });
+  document.addEventListener('keydown', function (e) {
+    if (!box.classList.contains('is-open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') show(current - 1);
+    if (e.key === 'ArrowRight') show(current + 1);
   });
 })();

@@ -92,24 +92,23 @@
       if (!events.length) return message(T.none);
       list.innerHTML = '';
       events.forEach(function (e) {
-        var card = el('article', 'event-card is-visible');
-        var meta = el('div', 'event-meta');
-        var date = e.d.toLocaleDateString(T.locale, { day: 'numeric', month: 'long', year: 'numeric' });
-        meta.appendChild(el('span', 'event-date', date + (e.time ? ' · ' + e.time : '')));
-        if (e.city) meta.appendChild(el('span', 'event-city', e.city));
-        card.appendChild(meta);
+        var card = el('article', 'gig');
+        var date = el('div', 'gig-date');
+        date.appendChild(el('span', 'gig-day', String(e.d.getDate())));
+        var month = e.d.toLocaleDateString(T.locale, { month: 'short', year: 'numeric' }).replace('.', '');
+        date.appendChild(el('span', 'gig-month', month + (e.time ? ' · ' + e.time : '')));
+        card.appendChild(date);
 
-        var info = el('div', 'event-info');
-        if (e.venue) info.appendChild(el('h3', 'event-venue', e.venue));
-        if (e.program) info.appendChild(el('p', 'event-program', e.program));
+        var info = el('div', 'gig-info');
+        info.appendChild(el('h3', '', e.venue || e.city));
+        var line = [e.venue ? e.city : '', e.program].filter(Boolean).join(' · ');
+        if (line) info.appendChild(el('p', '', line));
         card.appendChild(info);
 
         if (/^https?:\/\//i.test(e.link)) {
-          var a = el('a', 'event-link', T.more + ' →');
+          var a = el('a', 'gig-link', T.more);
           a.href = e.link; a.target = '_blank'; a.rel = 'noopener noreferrer';
           card.appendChild(a);
-        } else {
-          card.appendChild(el('span'));
         }
         list.appendChild(card);
       });
